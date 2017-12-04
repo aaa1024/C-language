@@ -1,26 +1,29 @@
 #include<stdio.h>
-typedef struct stu
-{
-    int num;
-    char name[10];
-    int grade[3];
-};
-float avg(struct stu *s)
-{
-    int i,sum=0;
-    for(i=0;i<3;i++)
-    {
-        sum += s->grade[i];
-    }
-    return sum/3.0;
-}
+
+int deal(int (*a)[2],int n);
 int main()
 {
+    int a[100][2];
+    int i,n;
+
+    scanf("%d",&n);
+    deal(a,n);
+    return 0;
+}
+
+int deal(int (*a)[2],int n)
+{
     int i;
-    struct stu a[5];
 
-    for(i=0;i<5;i++)
+    for(i=1;i<=n;i++)
     {
-
+        a[i][0]=i;
+        a[i][1]=(i+3)%3;
+    }
+    for(i=1;i<=n;i++)
+    {
+        if(a[i][1]==0)
+            continue;
+        printf("%d\n",a[i][0]);
     }
 }
