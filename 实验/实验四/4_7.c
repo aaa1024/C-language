@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #define SIZE 81
-#define LIM 20
+#define LIM 5
 #define HALT " "
 void stsrt(char *strings[],int num);
 

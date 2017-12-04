@@ -20,6 +20,7 @@ int deal(int (*a)[2],int n)
         a[i][0]=i;
         a[i][1]=(i+3)%3;
     }
+    printf("output:\n");
     for(i=1;i<=n;i++)
     {
         if(a[i][1]==0)
