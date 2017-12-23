@@ -2,7 +2,7 @@
 #define LIST_H
 #include <stdbool.h>
 
-#define TSIZE
+#define TSIZE 45
 struct film
 {
     char title[TSIZE];
@@ -19,6 +19,7 @@ typedef struct node
 typedef Node * List;
 
 void InitializeList(List * plist);
+
 bool ListIsEmpty(const List * plist);
 
 bool ListIsFull(const List * plist);
@@ -29,5 +30,5 @@ bool AddItem(Item item, List * plist);
 
 void Travese(const List *plist, void(*pfun)(Item item));
 
-void EmptyThelist(list * plist);
+void EmptyTheList(List * plist);
 #endif // LIST_H
