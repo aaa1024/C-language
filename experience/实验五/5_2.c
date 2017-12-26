@@ -12,27 +12,34 @@ struct stu
 };
 int main()
 {
-    struct stu * head;
+    struct stu * head = NULL, *prev, *current;
     int i;
     for(i = 0; i < 3; i++)
     {
-        scanf("%s", s[i].name);
-        scanf("%d", &s[i].age);
-        scanf("%s", s[i].major);
-        scanf("%d", &s[i].Class);
-        scanf("%d", &s[i].MathGrade);
-        scanf("%d", &s[i].EngGrade);
-        scanf("%d", &s[i].ProgrameGrade);
+        current = malloc(sizeof(struct stu));
+        if(head == NULL)
+            head = current;
+        else
+            prev->next = current;
+        scanf("%s", current->name);
+        scanf("%d", &current->age);
+        scanf("%s", current->major);
+        scanf("%d", &current->Class);
+        scanf("%d", &current->MathGrade);
+        scanf("%d", &current->EngGrade);
+        scanf("%d", &current->ProgrameGrade);
+        prev = current;
     }
     for(i = 0; i < 3; i++)
     {
-        printf("%s\n", s[i].name);
-        printf("%d\n", s[i].age);
-        printf("%s\n", s[i].major);
-        printf("%d\n", s[i].Class);
-        printf("%d\n", s[i].MathGrade);
-        printf("%d\n", s[i].EngGrade);
-        printf("%d\n", s[i].ProgrameGrade);
+        printf("%s\n", current->name);
+        printf("%d\n", current->age);
+        printf("%s\n", current->major);
+        printf("%d\n", current->Class);
+        printf("%d\n", current->MathGrade);
+        printf("%d\n", current->EngGrade);
+        printf("%d\n", current->ProgrameGrade);
+        current = current->next;
     }
     return 0;
 }
