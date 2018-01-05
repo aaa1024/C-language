@@ -8,7 +8,7 @@ struct stu
     int MathGrade;
     int EngGrade;
     int ProgrameGrade;
-    struct student * next;
+    struct stu * next;
 };
 int main()
 {
@@ -21,24 +21,34 @@ int main()
             head = current;
         else
             prev->next = current;
+        printf("name:");
         scanf("%s", current->name);
+        printf("age:");
         scanf("%d", &current->age);
+        printf("major");
         scanf("%s", current->major);
+        printf("Class:");
         scanf("%d", &current->Class);
+        printf("MathGrade:");
         scanf("%d", &current->MathGrade);
+        printf("EngGrade:");
         scanf("%d", &current->EngGrade);
+        printf("ProGrade:");
         scanf("%d", &current->ProgrameGrade);
         prev = current;
     }
     for(i = 0; i < 3; i++)
     {
+
         printf("%s\n", current->name);
+
         printf("%d\n", current->age);
         printf("%s\n", current->major);
         printf("%d\n", current->Class);
         printf("%d\n", current->MathGrade);
         printf("%d\n", current->EngGrade);
         printf("%d\n", current->ProgrameGrade);
+        printf("\n");
         current = current->next;
     }
     return 0;
