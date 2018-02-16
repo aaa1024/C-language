@@ -4,7 +4,7 @@ int s(int year,int month,int day);
 int main()
 {
     int year,month,day,sum;
-    scanf("%d%d%d",&year,&month,&day);
+    scanf("%d/%d/%d",&year,&month,&day);
 
     sum=s(year,month,day);
     printf("%d",sum);
