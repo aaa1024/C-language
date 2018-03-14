@@ -19,6 +19,6 @@ int main()
 {
 	book one = {123, 456};
 	book two = {100, 0};
-	add(one, two);
-	printf ("%d %d", one.num, one.price);
+	book three = add(one, two);
+	printf ("%d %d", three.num, three.price);
 }
