@@ -6,14 +6,17 @@ struct A
 	char *name;
 	char *sID;
 	int g;
+	//默认构造函数
 	A():name(NULL), sID(NULL)
 	{
 
 	}
+	//初始化构造函数
 	A(char *name, char *sID):name(name), sID(sID)
 	{
 
 	}
+	//拷贝构造函数
 	A(A &t)
 	{
 		name = new char [strlen(t.name)];
