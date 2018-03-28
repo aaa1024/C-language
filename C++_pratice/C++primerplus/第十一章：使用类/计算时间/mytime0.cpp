@@ -49,4 +49,5 @@ void Time::print()
 std::ostream & operator<<(std::ostream & os, const Time &t)
 {
 	printf("%02d:%02d\n", t.hours, t.minutes);
+	return os;
 } 

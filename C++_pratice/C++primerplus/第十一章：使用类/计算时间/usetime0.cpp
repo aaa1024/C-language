@@ -6,9 +6,9 @@ int main()
 	Time a(13,5);
 	Time b(12, 30);
 	a.print();
-	Time c = a.operator+(b);
+	Time c = a + b;
 	c.print();
-	cout << c << a;
+	cout << c << a << "h";
 	a.print();
 	b.print();
 	return 0;
