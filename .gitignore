@@ -5,3 +5,7 @@
 ! *.h
 ! *.py
 ! *.doc
+! *.doc
+! *.md
+! *.gitignore
+! *.docx
