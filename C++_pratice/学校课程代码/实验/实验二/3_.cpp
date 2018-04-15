@@ -1,9 +1,6 @@
-#include <stdio.h>
-#include <cstring>
 #include <iostream>
-
+#include <cstring>
 using namespace std;
-
 class String
 {
 private:
@@ -13,7 +10,7 @@ public:
 	String()
 	{
 		//To initialize a object, the point str is refer to NULL, and length = 0
-		this->str = NULL;
+		str = NULL;
 		length = 0;
 	}
 	String(const String &other)
@@ -68,7 +65,7 @@ public:
 
 	}
 
-	String& operator=(const String& other)
+	String operator=(const String& other)
 	{
 		//The point is to judge whether the str is NULL
 		this->length = other.length;
@@ -132,10 +129,6 @@ public:
 		}
 		return *this;
 	}
-	void operator<<(char *s)
-	{
-		std::cout << this->str << s << std::endl;
-	}
 
 	char& operator[](int i)
 	{
@@ -145,27 +138,51 @@ public:
 	String operator+(const String &other) const
 	{
 		String t;
-		t.length = strlen(this->str) + strlen(other.str);
-		t.str = new char [t.length + 1];
-		strcpy(t.str, this->str);
-		strcpy(t.str + this->length, other.str);
+		if (this->str != NULL && other.str != NULL)
+		{
+			t.length = strlen(this->str) + strlen(other.str);
+			t.str = new char [t.length + 1];
+			strcpy(t.str, this->str);
+			strcpy(t.str + this->length, other.str);
+		}
+		else
+		{
+			if (this->str != NULL)
+			{
+				t.length += strlen(this->str);
+				t.str = new char [t.length + 1];
+				strcpy(t.str, this->str);
+			}
+			else if (other.str != NULL)
+			{
+				t.length += strlen(other.str);
+				t.str = new char [t.length + 1];
+				strcpy(t.str, other.str);
+			}
+			else
+			{
+				t.length = 0;
+				t.str = NULL;
+			}
+		}
+
 		return t;
 	}
 
-
+	void operator<<(const String &other)
+	{
+		std::cout << this->str << other.str << std::endl;
+	}
 	friend std::ostream &operator<<(std::ostream &o, const String &a);
+
 };
 
 std::ostream &operator<<(std::ostream &o, const String &a)
 {
- 	o << a.str;
+	if (a.str != NULL)
+ 		o << a.str;
  	return o;
 } 
-
-void operator<<(std::ostream &oString & other)
-{
-	std::cout << this->str << other.str << endl;
-}
 int main(){
 
     String a("This is "), b(a);
@@ -181,6 +198,7 @@ int main(){
     a.append(c);
 
     cout << "a:" << a << "\n";
+    
 
     {
 
