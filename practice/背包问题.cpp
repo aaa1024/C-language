@@ -4,6 +4,8 @@ using namespace std;
 int w[maxn], v[maxn];
 int N, V;
 int dp[maxn][maxn];
+
+
 int main()
 {
 	
