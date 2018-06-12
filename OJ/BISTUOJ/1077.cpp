@@ -19,20 +19,26 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
+const int inf = 0x3f3f3f3f;
 #define LOCAL
 
 
 
-int main(int argc, char * argv[]) {
- 	int n;
- 	double x;
-    while (cin >> x >> n){
-    	double ans = sqrt(1 + x);
-    	for (int i = 2; i <= n; i++){
-    		ans = sqrt(ans + i);
-    	}
-    	printf("%.2lf\n", ans);
-    }
-
+int main(int argc, char * argv[]) 
+{
+	int year, month, day, h, m, s;
+	int t;
+	cin >> t;
+	while (t--){
+		scanf("%d/%d/%d-%d:%d:%d", &year, &month, &day, &h, &m, &s);
+		if (h >= 12){
+			if (h > 12) h -= 12;
+			printf("%02d/%02d/%04d-%02d:%02d:%02dpm\n", month, day, year, h, m, s);
+		}
+		else{
+			if (h == 0) h = 12;
+			printf("%02d/%02d/%04d-%02d:%02d:%02dam\n", month, day, year, h, m, s);
+		}
+	}
     return 0;
 }

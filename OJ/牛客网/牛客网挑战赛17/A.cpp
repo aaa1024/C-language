@@ -18,21 +18,39 @@
 using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
+#define maxn 1005
 #define ms(s) memset(s, 0, sizeof(s))
+const int inf = 0x3f3f3f3f;
 #define LOCAL
 
 
 
 int main(int argc, char * argv[]) {
- 	int n;
- 	double x;
-    while (cin >> x >> n){
-    	double ans = sqrt(1 + x);
-    	for (int i = 2; i <= n; i++){
-    		ans = sqrt(ans + i);
-    	}
-    	printf("%.2lf\n", ans);
-    }
-
+	int n, m;
+	cout << "aaa" << endl;
+	while(scanf("%d%d", &n, &m) != EOF){
+		int map[maxn][maxn];
+		int tot = 1;
+		int x = 1, y = 1;
+		while (tot <= m){
+			while (tot <= m && x <= n){
+				x++;
+				tot++;
+			}
+			while (tot <= m && y <= n){
+				y++;
+				tot++;
+			}
+			while (tot <= m && x >= 1){
+				x--;
+				tot++;
+			}
+			while (tot <= m && y >= 1){
+				y--;
+				tot++;
+			}
+		}
+		cout << x << " " << y << endl;
+	}
     return 0;
 }

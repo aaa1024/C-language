@@ -26,14 +26,32 @@ const int inf = 0x3f3f3f3f;
 
 int main(int argc, char * argv[]) 
 {
-	int n;
-	while (cin >> n){
-		int a[10000], b[10000];
-		for (int i = 0; i < n; i++){
-			cin >> a[i] >> b[i];
+	double a, b, c;
+	while (cin >> a >> b >> c){
+		if (a == b && b == c){
+			printf("一样，都是：%.2lf\n", a);
 		}
-		for (int i = 0; i < n; i++){
-			cout << a[i] - b[i] << endl;
+		else{
+			if (a == b){
+				printf("%.2lf(2) %.2lf\n", a, c);
+			}
+			else if (a == c){
+				printf("%.2lf(2) %.2lf\n", a, b);
+			}
+			else if (b == c){
+				printf("%.2lf(2) %.2lf\n", b, a);
+			}
+			else{
+				if (a < b){
+					swap(a, b);
+				}
+				if (a < c){
+					printf("%.2lf\n", a);
+				}
+				else{
+					printf("%.2lf\n", c);
+				}
+			}
 		}
 	}
     return 0;
