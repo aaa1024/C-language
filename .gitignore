@@ -1,37 +1,32 @@
-*
+# Prerequisites
+*.d
 
-!/Algorithm/
-!/Algorithm/**/
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
 
-!/C_homework/
-!/C_homework/**/
+# Precompiled Headers
+*.gch
+*.pch
 
-!/C++_pratice/
-!/C++_pratice/**/
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
 
-!/Cprimerplus/
-!/Cprimerplus/**/
+# Fortran module files
+*.mod
+*.smod
 
-!/Data_Structure/
-!/Data_Structure/**/
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
 
-!/C_experience/
-!/C_experience/**/
-
-!/OJ/
-!/OJ/**/
-
-!/practice/
-!/practice/**/
-
-!/typical_case/
-!/typical_case/**/
-
-!LICENSE
-!*.cpp
-!*.c
-!*.h
-!*.txt
-!*.doc
-!*.docx
-!*.md
+# Executables
+*.exe
+*.out
+*.app
