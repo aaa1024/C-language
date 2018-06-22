@@ -1,6 +1,0 @@
-name:wlw
-age:20
-StudentID2017011471
-place of Birth:HaiNan
-weight:65
-height168
