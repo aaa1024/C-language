@@ -37,6 +37,7 @@ int main(){
 	int a;
 	double b;
 	int n;
+	cout << "Please input a, b, n" << endl;
 	cin >> a>> b >> n;
 	int ans1 = getPower(a, n);
 	printf("a^n = %d\n", ans1);

@@ -21,7 +21,7 @@ private:
 		int data;
 		node * next;
 	};
-	int len, a;
+	int len;
 	node * head;
 	node *prev;
 
