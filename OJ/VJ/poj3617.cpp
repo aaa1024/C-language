@@ -26,10 +26,11 @@ char s[maxn];
 int N;
 void slove(){
 	int l = 0, r = N - 1;
+	int k = 0;
 	while (l <= r){
 		bool left = false;
 	//	for (int i = 0; i < N; i++){  //错了，应该改成下面这样
-		for (int i = 0; a + i <= b; i++){
+		for (int i = 0; l + i <= r; i++){
 		//	printf("%c %c\n", s[l + i], s[r - i]);
 			if (s[l + i] < s[r - i]){
 				left = true;
@@ -46,15 +47,21 @@ void slove(){
 		else{
 			putchar(s[r--]);
 		}
+		k++;
+		if (k % 80 == 0){
+			cout << endl;
+		}
+
 	}
-	printf("\n");
 }
 int main(int argc, char * argv[]) {
 //	freopen("input.txt", "r", stdin);
-	cin >> N;
-	for (int i = 0; i < N; i++){
-		cin >> s[i];
+	while(cin >> N){
+		for (int i = 0; i < N; i++){
+			cin >> s[i];
+		}
+		slove();
 	}
-	slove();
+
     return 0;
 }
