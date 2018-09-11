@@ -19,6 +19,7 @@ int main()
             if(i % prime[j] == 0) break;//关键！！！！ 
         }
     }
-    printf("%d\n", cnt);
-    return 0;
+    for (int i = 0; i < cnt; i++){
+        printf("%d\n", prime[i]);
+    }
 }

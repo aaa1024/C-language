@@ -30,6 +30,7 @@ long long int a[maxn][4];
 long long int b[maxn * maxn];
 long long int c[maxn * maxn];
 long long int n, t = 0;
+//优化之后的二分查找
 int binary_search(int a){
 	int r = t - 1;
 	int l = 0;
@@ -37,6 +38,7 @@ int binary_search(int a){
 		int m = (r + l) / 2;
 		if (c[m] == a){
 			int ans = 0;
+			//主要是这里，这里返回的是从l到r出现x的次数，而不是单纯的true
 			for (int i = l; i <= r; i++){
 				if (c[i] == a) ans++;
 			}
@@ -46,11 +48,12 @@ int binary_search(int a){
 			l = m + 1;
 		}
 		else{
-			r = m;
+			r = m; 
 		}
 	}
 	return 0;
 }
+//打印调试函数
 void print(){
 	printf("t = %d\n", t);
 	for (int i = 0; i < t; i++){
@@ -58,16 +61,19 @@ void print(){
 	}
 }
 int main(int argc, char * argv[]) {
-	freopen("in.txt", "r", stdin);
+//	freopen("in.txt", "r", stdin);
 	while (cin >> n){
 		int temp;
 		long long int ans = 0;
 		t = 0;
 		for (int i = 0; i < n; i++){
+			//用a[i][0 ~ 3]代替了ABCD
 			cin >> a[i][0] >> a[i][1] >> a[i][2] >> a[i][3];
 		}
+
 		for (int i = 0; i < n; i++){
 			for (int j = 0; j < n; j++){
+				//把每个和存进b和c里
 				b[t] = a[i][0] + a[j][1];
 				c[t++] = a[i][2] + a[j][3];
 			}
@@ -75,6 +81,7 @@ int main(int argc, char * argv[]) {
 		sort(c, c + t);
 		for (int i = 0; i < t; i++){
 			if (temp = binary_search(-b[i])){
+				//累加返回c里的-b[i]的个数
 				ans += temp;
 			}
 		}
