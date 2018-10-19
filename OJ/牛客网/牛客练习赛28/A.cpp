@@ -20,19 +20,31 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
-#define maxn 10000007
 const int inf = 0x3f3f3f3f;
 
 int main(int argc, char * argv[]) 
 {
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
-	int n = 10;
-	for (int i = 1; i <= n; i++){
-		for (int j = 1; j <= n; j++){
-			printf("%d + %d = %d\n", i , j, i + j);
-			printf("%d - %d = %d\n", i , j, i - j);
-			cout << endl;
+	int n, m, k, s;
+	pair<int, string> p[30];
+	while (cin >> n >> m){
+		for (int i = 0; i < n; i++){
+			cin >> p[i].second; //second代表名字
+			cin >> p[i].first; //first代表出生年月日
+		}
+		sort(p, p + n); //按照出生年月日排序
+		for (int i = 0; i < m; i++){
+			cin >> k >> s;
+			for (int i = 0; i < n; i++){
+				if (p[i].first % 10000 == s){
+					k--;
+				}
+				if (k == 0){
+					cout << p[i].second << endl;
+					break;
+				}
+			}
 		}
 	}
     return 0;

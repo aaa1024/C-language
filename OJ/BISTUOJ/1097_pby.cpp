@@ -12,7 +12,6 @@
 #include <map>
 #include <ctime>
 #include <vector>
-#include <fstream>
 #include <list>
 #include <iomanip>
 #include <numeric>
@@ -27,13 +26,16 @@ int main(int argc, char * argv[])
 {
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
-	int n = 10;
-	for (int i = 1; i <= n; i++){
-		for (int j = 1; j <= n; j++){
-			printf("%d + %d = %d\n", i , j, i + j);
-			printf("%d - %d = %d\n", i , j, i - j);
-			cout << endl;
+	unsigned long long t;
+	cin>>t;
+	while(t--){
+		unsigned long long  n;
+		unsigned long long cnt = 0;
+		cin >> n;
+		while (n >= 5){
+			n /= 5; cnt += n;
 		}
+		cout << cnt << endl;
 	}
     return 0;
 }

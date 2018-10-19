@@ -34,7 +34,6 @@ void dfs(int left, int right)
 			j--;
 		while (a[i] <= temp && i < j)
 			i++;
-
 		if (i != j)
 		{
 			t = a[i];

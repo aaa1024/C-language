@@ -1,9 +1,13 @@
-#include <cstdio>
-#include <iostream>
-#include <cstring>
-using namespace std;
-int main(){
-//	freopen("in.txt", "r", stdin);
-	printf("%d\n", 0 % 4);
+#include <stdio.h>
+int main()
+{
+	int C,n,r;
+	scanf("%d",&C);
+	while(C--)
+	{
+		scanf("%d",&n);
+		r = 2*n*n - n + 1;
+		printf("%d\n",r);
+	}
 	return 0;
 }

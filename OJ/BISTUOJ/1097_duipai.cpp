@@ -22,18 +22,20 @@ typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
 #define maxn 10000007
 const int inf = 0x3f3f3f3f;
-
+unsigned long long fac(unsigned long long n){
+	unsigned long long ans = 1;
+	for (unsigned long long i = 2; i <= n; i++){
+		ans *= i;
+	}
+	return ans;
+}
 int main(int argc, char * argv[]) 
 {
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
-	int n = 10;
-	for (int i = 1; i <= n; i++){
-		for (int j = 1; j <= n; j++){
-			printf("%d + %d = %d\n", i , j, i + j);
-			printf("%d - %d = %d\n", i , j, i - j);
-			cout << endl;
-		}
+	unsigned long long n;
+	while (cin >> n){
+		cout << fac(n) << endl;
 	}
     return 0;
 }

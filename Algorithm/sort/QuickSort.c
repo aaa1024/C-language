@@ -1,13 +1,14 @@
 #include <stdio.h>
-#define n 5
-
+#include <iostream>
+using namespace std;
 void QuickSort(int left, int right);
 int a[100];
 
 int main()
 {
-	int i;
-	
+	freopen("in.txt", "r", stdin);
+	int i, n;
+	cin >> n;
 	for (i = 1; i <= n; i++)
 	{
 		scanf("%d", &a[i]);
@@ -24,7 +25,7 @@ void QuickSort(int left, int right)
 	int i = left, j = right;
 	int mid = a[left];
 	int t;
-
+	
 	if (left > right)
 		return;
 

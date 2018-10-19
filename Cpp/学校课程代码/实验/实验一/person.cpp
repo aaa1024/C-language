@@ -94,8 +94,6 @@ int main(){
 
    scanf(" %c", &gender);
 
-
-
    Person p(name, gender, year ,month, day);
 
    memset(name, 0, 100);

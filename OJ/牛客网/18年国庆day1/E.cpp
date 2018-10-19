@@ -20,20 +20,26 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
-#define maxn 10000007
+#define maxn 1007
 const int inf = 0x3f3f3f3f;
 
 int main(int argc, char * argv[]) 
 {
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
-	int n = 10;
-	for (int i = 1; i <= n; i++){
-		for (int j = 1; j <= n; j++){
-			printf("%d + %d = %d\n", i , j, i + j);
-			printf("%d - %d = %d\n", i , j, i - j);
-			cout << endl;
+	ll n, m, a[maxn];
+	while (cin >> n >> m){
+		int cnt = 0;
+		for (int i = 0; i < n; i++){
+			cin >> a[i];
 		}
+		sort(a, a + n);
+		for (int i = 1; i < n; i++){
+			if (a[i] - a[i - 1] <= m){
+				cnt++;
+			}
+		}
+		cout << n - cnt << endl;
 	}
     return 0;
 }

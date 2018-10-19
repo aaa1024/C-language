@@ -3,7 +3,7 @@
 #include <cstring>
 #include <stack>
 using namespace std;
-stack<int> num;
+stack<double> num;
 stack<char> opera;
 //表示栈内算术运算符的优先级
 int getPriorityInStack(char c){
@@ -44,7 +44,7 @@ int getPriorityOutStack(char c){
 	}
 	return - 1;
 }
-int calculate(char c, int a, int b){
+double calculate(char c, double a, double b){
 	if (c == '+'){
 		return a + b;
 	}
@@ -62,16 +62,16 @@ int calculate(char c, int a, int b){
 void solve(){
 	opera.pop();
 	while (!num.empty() && !opera.empty()){
-		int a = num.top();
+		double a = num.top();
 		num.pop();
 		if (opera.top() == '#'){
 			cout << a << endl;
 			opera.pop();
 			break;
 		}
-		int b = num.top();
+		double b = num.top();
 		num.pop();
-		int c = calculate(opera.top(), b, a);
+		double c = calculate(opera.top(), b, a);
 		opera.pop();
 		num.push(c);
 	}
@@ -79,20 +79,27 @@ void solve(){
 void read(string input){
 	opera.push('#');
 	input = input + '#';
-	int temp = 0;
+	double temp = 0;
 	//cout << input << endl;
 	for(int i = 0; i < (int)input.size(); i++){
 	//	printf("input[%d] = %c op:%c ", i, input[i], opera.top());
 	//	if(!num.empty()) cout << num.top() << endl;
 	//	else cout << "null" << endl;
 		//if (input[i] == '#') break;
-		if (input[i] >= '0' && input[i] <= '9'){
+		if ((input[i] >= '0' && input[i] <= '9') || (input[i] == '-' && (i == 0 || input[i - 1] == '('))){
 			temp = 0;
-			while(input[i] >= '0' && input[i] <= '9'){
+			int flag = 1;
+			if (input[i] == '-' && (i == 0 || input[i - 1] == '(')){
+				flag = -1;
+				i++;
+			}
+			while((input[i] >= '0' && input[i] <= '9')){
+				if (input[i] == '-') temp = -temp;
 				temp = temp * 10  + (input[i] - '0');
 				i++;
 			}
-			num.push(temp);			i--;
+			num.push(temp*flag);			
+			i--;
 		}
 		else{
 		//	printf("temp3:%d\n", temp);;
@@ -108,26 +115,26 @@ void read(string input){
 								break;
 							}
 						}
-						int a = num.top();
+						double a = num.top();
 						num.pop();
-						int b = num.top();
+						double b = num.top();
 						num.pop();
-						int c = calculate(opera.top(), b, a);
+						double c = calculate(opera.top(), b, a);
 						num.push(c);
 						opera.pop();
 					}
 					opera.pop();
 				}
 				else{
-					int a = num.top();
+					double a = num.top();
 					num.pop();
 					if (num.empty()){
-						cout << a << endl;
+						cout << (int)a << endl;
 						break;
 					}
-					int b = num.top();
+					double b = num.top();
 					num.pop();
-					int c = calculate(opera.top(), b, a);
+					double c = calculate(opera.top(), b, a);
 					opera.pop();
 					num.push(c);
 					//opera.push(input[i]);
@@ -141,14 +148,29 @@ void read(string input){
 	}
 }
 int main(){
-//	freopen("in.txt", "r", stdin);
+	
+	//freopen("in.txt", "r", stdin);
 	//int ans = 0;
-	string input;
-	cin >> input;
-	read(input);
-	while (!num.empty()){
-		cout << num.top() << endl;
-		num.pop();
+	string input2, input;
+	while(getline(cin, input)){
+	    int index = 0;
+	    string s = input;
+	    if(!s.empty())
+	    {
+	        while( (index = s.find(' ',index)) != string::npos)
+	        {
+	            s.erase(index,1);
+	        }
+	    }
+
+		//cout << s << endl;
+		read(s);
+		while (!num.empty()){
+			int ans = num.top();
+			//cout << ans << endl;
+			printf("--%d\n", ans);
+			num.pop();
+		}
 	}
 	/*
 	while (!opera.empty()){
