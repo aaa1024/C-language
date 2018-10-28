@@ -1,5 +1,5 @@
-#include <cstdio>
-#include <cmath>
+#include <stdio.h>
+#include <math.h>
 using namespace std;
 double Sqrt(double c){
     if (c < 0) return 0;
@@ -11,5 +11,7 @@ double Sqrt(double c){
     return t;
 }
 int main(){
-	printf("%lf\n", Sqrt(100));
+	double n;
+	scanf("%lf", &n);
+	printf("%.5lf\n", Sqrt(n));
 }

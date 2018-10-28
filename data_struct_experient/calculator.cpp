@@ -76,6 +76,22 @@ void solve(){
 		num.push(c);
 	}
 }
+string seperate(string a){
+	if(!a.empty())
+   	{
+		for (int i = 0; i < (int)a.size(); i++){
+			while ((a[i] >'9' || a[i] < '0' || a[i] == ' ') 
+					&& i < (int)a.size() 
+					&& (a[i] != '+' && a[i] != '-' 
+					&& a[i] != '*' && a[i] != '/')
+					&& (a[i] != '(') && (a[i] != ')')
+					&& (a[i] != '.')){
+				a.erase(i, 1);
+			}
+		}
+    }
+    return a;
+}
 void read(string input){
 	opera.push('#');
 	input = input + '#';
@@ -153,24 +169,9 @@ int main(){
 	//int ans = 0;
 	string input2, input;
 	while(getline(cin, input)){
-	    int index = 0;
-	    string s = input;
-	    if(!s.empty())
-	    {
-	        while( (index = s.find(' ',index)) != string::npos)
-	        {
-	            s.erase(index,1);
-	        }
-	    }
-
-		//cout << s << endl;
+	    string s = seperate(input);
+	//	cout << s << endl;
 		read(s);
-		while (!num.empty()){
-			int ans = num.top();
-			//cout << ans << endl;
-			printf("--%d\n", ans);
-			num.pop();
-		}
 	}
 	/*
 	while (!opera.empty()){

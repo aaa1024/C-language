@@ -1,21 +1,22 @@
 #include <cstdio>
 #include <iostream>
 using namespace std;
+class Node{
+public:
+	int key;
+	int val;
+	Node *left = NULL; //切记要赋空
+	Node *right = NULL;
+	int N; //以该节点为根个的子树中的节点个数
+	Node(int _key, int _val, int _N){
+		this->key = _key;
+		this->val = _val;
+		this->N = _N;
+	}
+};
+
 class BST{
 private:
-	class Node{
-	public:
-		int key;
-		int val;
-		Node *left = NULL; //切记要赋空
-		Node *right = NULL;
-		int N; //以该节点为根个的子树中的节点个数
-		Node(int _key, int _val, int _N){
-			this->key = _key;
-			this->val = _val;
-			this->N = _N;
-		}
-	};
 	Node *root = NULL;
 	int size(Node *x){
 		if (x == NULL) return 0;
@@ -47,7 +48,7 @@ private:
 		if (x->right == NULL) return x;
 		return max(x->right);
 	}
-	Node *Node floor(Node *x, int key){
+	Node * floor(Node *x, int key){
 		if (x == NULL) return NULL;
 		int cmp = key - x->key;
 		if (cmp == 0) return x;
@@ -75,7 +76,7 @@ public:
 	int floor(int key){
 		Node *x = floor(root, key);
 		if (x == NULL) return 0;
-		return x->key
+		return x->key;
 	}
 };
 int main(){
