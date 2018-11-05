@@ -86,7 +86,7 @@ vector<int> findTopK(vector<int> a, vector<int> b, int t){
 }
 int main(int argc, char * argv[]) 
 {
-    freopen("in.txt", "r", stdin);
+    //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
 	while (cin >> n >> m >> k){
 		int a[maxn][maxn];

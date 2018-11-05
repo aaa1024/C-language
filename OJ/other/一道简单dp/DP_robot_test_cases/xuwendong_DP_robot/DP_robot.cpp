@@ -57,7 +57,6 @@ For all, cost <= 100
 #include <list>
 #include <iomanip>
 #include <numeric>
-#include <windows.h>
 using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
@@ -87,11 +86,10 @@ vector<int> findTopK(vector<int> a, vector<int> b, int t){
 }
 int main(int argc, char * argv[]) 
 {
-    freopen("test_10.in", "r", stdin);
-    freopen("ans_10.out", "w", stdout);
+   // freopen("test_1.in", "r", stdin);
+   // freopen("ans_1.out", "w", stdout);
 	while (cin >> n >> m >> k){
-		DWORD start, stop;
-		start = GetTickCount();
+	//	start = GetTickCount();
 		int a[maxn][maxn];
 		vector<int> v[maxn][maxn];
 		for (int i = 1; i <= n; i++){
@@ -132,8 +130,8 @@ int main(int argc, char * argv[])
 			cout << v[n][m][t] << " ";
 		}
 		cout << endl;
-		stop = GetTickCount();
-		cout << stop - start << endl;
+	//	stop = GetTickCount();
+	//	cout << stop - start << endl;
 	}
     return 0;
 }

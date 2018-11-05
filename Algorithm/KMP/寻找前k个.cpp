@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include <string.h>
+#include <iostream>
 /*
 算法思想就是找到一个最大的k, 使得字符串的前k个元素和后k个元素相等。
 */
+using namespace std;
 int main(){
 	char s[1000];
+	int n;
 	scanf("%s", s);
+	cin >> n;
 	int len = strlen(s); // 字符串长度
 	int k = len - 1;
 	while (k >= 0){
@@ -32,8 +36,10 @@ int main(){
 //	printf("%d\n", k);
 	printf("%s", s);//先输出它本身
 	//再输出它的后k个
-	for (int i = k; i < len; i++){
-		printf("%c", s[i]);
+	for (int m = 0; m < n - 1; m++){
+		for (int i = k; i < len; i++){
+			printf("%c", s[i]);
+		}
 	}
 	printf("\n");
 	return 0;

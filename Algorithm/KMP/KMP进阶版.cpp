@@ -3,19 +3,18 @@
 #include <vector>
 using namespace std;
 //通过朴素的逐一对比的方法找到next[i]
-//另外字符串从1开始，第一个是填充空格
+//字符串从0开始，next数组第一位为-1
 std::vector<int> findNext(std::string a){
 	std::vector<int> next;
 //	a = " " + a;
 //	cout << a << endl;
 	int len = a.size();
-	next.push_back(0);
-	next.push_back(0);
-	for (int i = 2; i < len; i++){
+	next.push_back(-1);
+	for (int i = 1; i < len; i++){
 		int k = i - 1;
 		while (k >= 0){
 			int flag = 1;
-			for (int j = 1; j < k; j++){
+			for (int j = 0; j < k; j++){
 				if (a[j] == a[i - k + j]){ 
 				//s[i]代表前k个
 				//s[len - k + i]代表后k个
@@ -41,13 +40,16 @@ std::vector<int> findNext(std::string a){
 int main(){
 	string a, b;
 	cin >> a >> b;
-	a = " " + a;
-	b = " " + b;
 //	cout << a << endl;
 //	cout << b << endl;
 	vector<int> next = findNext(b);
+/*	for (int i = 0; i < (int)next.size(); i++){
+		cout << next[i] << " ";
+	}
+	cout << endl;
+*/
 	bool flag = 1;
-	for (int i = 1, j = 1; i < (int)a.size(); i++){
+	for (int i = 0, j = 0; i < (int)a.size(); i++){
 		if (a[i] == b[j]){
 			j++;
 			if (j == (int)b.size()){
