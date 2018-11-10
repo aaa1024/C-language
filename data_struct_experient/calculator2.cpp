@@ -203,7 +203,7 @@ bool judge(string s){
 }
 int main(){
 	
-	freopen("in.txt", "r", stdin);
+	//freopen("in.txt", "r", stdin);
 	//int ans = 0;
 	string input2, input;
 	while(getline(cin, input)){

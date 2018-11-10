@@ -166,9 +166,9 @@ int main(){
 		//cout << s << endl;
 		read(s);
 		while (!num.empty()){
-			int ans = num.top();
+			double ans = num.top();
 			//cout << ans << endl;
-			printf("--%d\n", ans);
+			printf("%lf\n", ans);
 			num.pop();
 		}
 	}
