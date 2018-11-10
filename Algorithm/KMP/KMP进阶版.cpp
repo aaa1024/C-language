@@ -37,17 +37,60 @@ std::vector<int> findNext(std::string a){
 	}
 	return next;
 }
+
+std::vector<int> findNext2(std::string a){
+	std::vector<int> next;
+//	a = " " + a;
+//	cout << a << endl;
+	int len = a.size();
+	next.push_back(-1);
+	int k = -1, j = 0;
+	while (j < len - 1){
+		while (k >= 0 && a[j] != a[k]){
+			k = next[k];
+		}
+		j++;k++;
+		next.push_back(k);
+	}
+	return next;
+}
+
+std::vector<int> findNext3(std::string a){
+	std::vector<int> next;
+//	a = " " + a;
+//	cout << a << endl;
+	int len = a.size();
+	next.push_back(-1);
+	int k = -1, j = 0;
+	while (j < len - 1){
+		while (k >= 0 && a[j] != a[k]){
+			k = next[k];
+		}
+		j++;k++;
+		if (a[j] == a[k])
+			next.push_back(next[k]);
+		else
+			next.push_back(k);
+	}
+	return next;
+}
 int main(){
 	string a, b;
 	cin >> a >> b;
 //	cout << a << endl;
 //	cout << b << endl;
 	vector<int> next = findNext(b);
-/*	for (int i = 0; i < (int)next.size(); i++){
+	for (int i = 0; i < (int)next.size(); i++){
 		cout << next[i] << " ";
 	}
 	cout << endl;
-*/
+
+	vector<int> next2 = findNext2(b);
+	for (int i = 0; i < (int)next2.size(); i++){
+		cout << next2[i] << " ";
+	}
+	cout << endl;
+
 	bool flag = 1;
 	for (int i = 0, j = 0; i < (int)a.size(); i++){
 		if (a[i] == b[j]){
