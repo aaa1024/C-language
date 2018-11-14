@@ -78,6 +78,14 @@ public:
 		if (x == NULL) return 0;
 		return x->key;
 	}
+	void erase(int key){
+		//首先需要找到要删除的元素的地址
+		//然后找到他左儿子的最右节点x
+		//拿它的左儿子x最右节点代替它
+		//它的左儿子最右节点x如果有左子树y的话
+		//则将x的左子树y接到x的父亲上去
+		//11.13，下午来实现代码
+	}
 };
 int main(){
 	BST bst;

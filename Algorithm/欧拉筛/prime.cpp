@@ -3,10 +3,10 @@
 using namespace std;
 int main()
 {
-    int n, cnt = 0;
+    long long int n, cnt = 0;
     int prime[100001];//存素数 
     bool vis[100001];//保证不做素数的倍数 
-    scanf("%d", &n);
+    scanf("%lld", &n);
     memset(vis, false, sizeof(vis));//初始化 
     memset(prime, 0, sizeof(prime));
     for(int i = 2; i <= n; i++)
