@@ -52,11 +52,11 @@ bool ok(int nz, int nx, int ny){
 		&& ny >= 0 && ny < c
 		);
 }
-int bfs(){
+int bfs(int z, int x, int y){
 	//z代表层数，x, y代表起点坐标
 	point a, next;
 	queue<point> q;
-	a.x = sx, a.y = sy, a.z = sz;
+	a.x = x, a.y = y, a.z = z;
 	a.step = 0;
 	mark[sz][sx][sy] = 1;
 	q.push(a);
@@ -107,7 +107,7 @@ int main(int argc, char * argv[]) {
 		// printf("%d %d %d\n", sz, sx, sy);
 		// printf("%d %d %d\n", tz, tx, ty);
 		ms(mark);
-		int ans = bfs();
+		int ans = bfs(sz, sx, sy);
 		if (ans){
 			printf("Escaped in %d minute(s).\n", ans);
 		}

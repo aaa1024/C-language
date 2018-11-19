@@ -27,32 +27,16 @@ int main(int argc, char * argv[])
 {
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
-	int n;
-	string a;
-	while (cin >> n){
-		cin >> a;
-		int max = a[0], maxi = 0;
-		if ((int)a.size() == 1){
-			cout << a << endl;
-			continue;
+	int t, n;
+	cin >> t;
+	while (t--){
+		cin >> n;
+		if (n != 1){
+			cout << "Ulamog, the Infinite Gyre" << endl;
 		}
-		for (int i = 1; i < (int)a.size(); i++){
-			if (a[i] > max){
-				max = a[i];
-				maxi = i;
-			}
-			if (a[i] < max){
-				maxi = i - 1;
-				break;
-			}
+		else{
+			cout << "Kozilek, Butcher of Truth" << endl;
 		}
-		for (int i = 0; i < maxi; i++){
-			cout << a[i];
-		}
-		for (int i = maxi + 1; i < (int)a.size(); i++){
-			cout << a[i];
-		}
-		cout << endl;
 	}
     return 0;
 }

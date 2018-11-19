@@ -27,32 +27,37 @@ int main(int argc, char * argv[])
 {
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
-	int n;
-	string a;
-	while (cin >> n){
-		cin >> a;
-		int max = a[0], maxi = 0;
-		if ((int)a.size() == 1){
-			cout << a << endl;
+	int t;
+	double a, b;
+	cin >> t;
+	while (t--){
+		int d;
+		cin >> d;
+		if (d == 0){
+			cout << "Y 0.000000000 0.000000000" << endl;
 			continue;
 		}
-		for (int i = 1; i < (int)a.size(); i++){
-			if (a[i] > max){
-				max = a[i];
-				maxi = i;
+		if (d < 4){
+			cout << "N" << endl;
+			continue;
+		}
+		a = ((-d) + sqrt(d * d - 4 * d)) / (-2);
+		b = d - a;
+		//|(a+b)−a⋅b|≤10−6  and |(a+b)−d|≤10−6.
+		if (abs(a + b - a * b) <= 1e-6 && abs((a + b) - d) <= 1e-6){
+		//	cout << "Y " << a << " " << b << endl;
+			printf("Y %.9lf %.9lf\n", a, b);
+		}
+		else{
+			a = ((-d) - sqrt(d * d - 4 * d)) / (-2);
+			b = d - a;
+			if (abs(a + b - a * b) <= 1e-6 && abs((a + b) - d) <= 1e-6){
+				printf("Y %.9lf %.9lf\n", a, b);
 			}
-			if (a[i] < max){
-				maxi = i - 1;
-				break;
+			else{
+				cout << "N" << endl;
 			}
 		}
-		for (int i = 0; i < maxi; i++){
-			cout << a[i];
-		}
-		for (int i = maxi + 1; i < (int)a.size(); i++){
-			cout << a[i];
-		}
-		cout << endl;
 	}
     return 0;
 }

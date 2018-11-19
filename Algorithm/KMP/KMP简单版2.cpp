@@ -43,6 +43,10 @@ int main(){
 //	cout << a << endl;
 //	cout << b << endl;
 	vector<int> next = findNext(b);
+	for (int i = 0; i < (int)next.size(); i++){
+		cout << next[i] << " ";
+	}
+	cout << endl;
 /*	for (int i = 0; i < (int)next.size(); i++){
 		cout << next[i] << " ";
 	}

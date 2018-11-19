@@ -20,39 +20,47 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
-#define maxn 10000007
+#define maxn 107
 const int inf = 0x3f3f3f3f;
 
 int main(int argc, char * argv[]) 
 {
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
-	int n;
-	string a;
-	while (cin >> n){
-		cin >> a;
-		int max = a[0], maxi = 0;
-		if ((int)a.size() == 1){
-			cout << a << endl;
-			continue;
+	int n, s;
+	while (cin >> n >> s){
+		int x[maxn], y[maxn];
+		int min = inf, flag = 0;
+		for (int i = 1; i <= n; i++){
+			cin >> x[i] >> y[i];
 		}
-		for (int i = 1; i < (int)a.size(); i++){
-			if (a[i] > max){
-				max = a[i];
-				maxi = i;
+		for (int i = 1; i <= n; i++){
+			if (s >= x[i]){
+				if (s == x[i]){
+					if (y[i] == 0){
+						flag = 1;
+					}
+					continue;
+				}
+				if (y[i] < min){
+					flag = 1;
+					if (y[i] != 0){
+						min = y[i];
+					}
+				}
 			}
-			if (a[i] < max){
-				maxi = i - 1;
-				break;
+		}
+		if (min != inf){
+			cout << 100 - min << endl;
+		}
+		else{
+			if (flag == 1){
+				cout << 0 << endl;
+			}
+			else{
+				cout << -1 << endl;
 			}
 		}
-		for (int i = 0; i < maxi; i++){
-			cout << a[i];
-		}
-		for (int i = maxi + 1; i < (int)a.size(); i++){
-			cout << a[i];
-		}
-		cout << endl;
 	}
     return 0;
 }

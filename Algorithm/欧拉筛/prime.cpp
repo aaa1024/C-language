@@ -4,8 +4,8 @@ using namespace std;
 int main()
 {
     long long int n, cnt = 0;
-    int prime[100001];//存素数 
-    bool vis[100001];//保证不做素数的倍数 
+    long long prime[100001];//存素数 
+    long long vis[100001];//保证不做素数的倍数 
     scanf("%lld", &n);
     memset(vis, false, sizeof(vis));//初始化 
     memset(prime, 0, sizeof(prime));

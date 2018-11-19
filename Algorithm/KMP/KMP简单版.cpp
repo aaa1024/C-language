@@ -47,6 +47,10 @@ int main(){
 //	cout << a << endl;
 //	cout << b << endl;
 	vector<int> next = findNext(b);
+	for (int i = 0; i < (int)next.size(); i++){
+		cout << next[i] << " ";
+	}
+	cout << endl;
 	bool flag = 1;
 	for (int i = 1, j = 1; i < (int)a.size(); i++){ //i, j 都从1开始，运算过程j会变化
 		if (a[i] == b[j]){

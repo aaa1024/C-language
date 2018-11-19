@@ -37,7 +37,7 @@ std::vector<int> findNext(std::string a){
 	}
 	return next;
 }
-
+//运用递推
 std::vector<int> findNext2(std::string a){
 	std::vector<int> next;
 //	a = " " + a;
@@ -102,7 +102,7 @@ int main(){
 			}
 		}
 		else{
-			j = next[j] + 1;
+			j = next2[j] + 1;
 		}
 	}
 	if (flag){
