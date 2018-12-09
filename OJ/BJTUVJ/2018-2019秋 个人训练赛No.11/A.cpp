@@ -22,20 +22,34 @@ typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
 #define maxn 10000007
 const int inf = 0x3f3f3f3f;
-long long square[1007];
-long long cnt = 0;
-map<long long, pair<long long, long long> > m;
-void init(){
-	cnt = 0;
-	for (long long i = 0; i *i <= maxn; i++){
-		square[cnt] = i * i;
-		cnt++;
-	}
-}
+
 int main(int argc, char * argv[]) 
 {
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
-
+    // 一个座位a元，m个座位b元，他要买n个
+	int n, m, a, b;
+	while (cin >> n >> m >> a >> b){
+		if (m <= n){
+			int ans1 = 0, ans2 = 0;
+			ans1 += n / m * b;
+			if ((n % m) * a < b){
+				ans1 += (n % m) * a;
+			}
+			else{
+				ans1 += b;
+			}
+			ans2 = n * a;
+			cout << min(ans1, ans2) << endl;
+		}
+		else{
+			if (b < n * a){
+				cout << b << endl;
+			}
+			else{
+				cout << n * a << endl;
+			}
+		}
+	}
     return 0;
 }

@@ -31,6 +31,7 @@ int main(int argc, char * argv[])
 	for (int i = 1; i <= 10; i++){
 		v.push_back(i);
 	}
+ 
 	cout << v.size() << endl;
     return 0;
 }

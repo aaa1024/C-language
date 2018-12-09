@@ -20,22 +20,20 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
-#define maxn 10000007
+#define maxn 1007
 const int inf = 0x3f3f3f3f;
-long long square[1007];
-long long cnt = 0;
-map<long long, pair<long long, long long> > m;
-void init(){
-	cnt = 0;
-	for (long long i = 0; i *i <= maxn; i++){
-		square[cnt] = i * i;
-		cnt++;
-	}
-}
+
 int main(int argc, char * argv[]) 
 {
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
-
+	int n, p;
+	while (cin >> n >> p){
+		int a[maxn];
+		for (int i = 1; i <= n; i++){
+			cin >> a[i];
+		}
+		
+	}
     return 0;
 }
