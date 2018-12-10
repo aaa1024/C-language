@@ -234,6 +234,7 @@ int main(){
     //freopen("in.txt", "r", stdin);
     //int ans = 0;
     string input2, input;
+    cout << "please input a string" << endl;
     while(getline(cin, input)){
         string s = seperate(input);
         if (!judge(s)){
@@ -241,6 +242,7 @@ int main(){
             continue;
         }
         //	cout << s << endl;
+        cout << "the result is:" << endl;
         read(s);
     }
     /*
