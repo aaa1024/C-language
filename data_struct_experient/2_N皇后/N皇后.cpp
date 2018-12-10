@@ -32,13 +32,10 @@ void dfs(int cur){
 	}*/
 	if (cur == n){
 		tot++;
-	/*	if (tot <= 3){
-			for (int i = 0; i < n; i++){
-				cout << pos[i] + 1 << " ";
-			}
-			cout << endl;
+		for (int i = 0; i < n; i++){
+			cout << pos[i] + 1 << " ";
 		}
-	*/
+		cout << endl;
 		return;
 	}
 	for (int i = 0; i < n; i++){
@@ -56,11 +53,12 @@ int main(int argc, char * argv[])
 {
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
-	int ans[] = {4, 40, 92, 352, 724, 2680, 14200, 73712, 365596};
-	while (cin >> n){
+ 
+	while (cout << "input:" << endl && cin >> n){
 		tot = 0;
 		ms(vis);
 		ms(pos);
+		cout << "output:" << endl;
 		dfs(0);
 		cout << tot << endl;
 	//	cout << ans[n - 6] << endl;
