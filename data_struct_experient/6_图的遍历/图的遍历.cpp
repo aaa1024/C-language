@@ -1,226 +1,112 @@
 #include <iostream>
+#include <cstdio>
+#include <list>
+#include <cstring>
 #include <queue>
-
 using namespace std;
 
-bool DFSvisited[50];  //?????ı???
-bool BFSvisited[50];  //????ѵı???
-string path[1000];
-//?߱?ڵ?????һ??adjvex????洢?ڽӵ?λ???һ??nextָ????ָ??һ???ڵ?typedef struct EdgeNode {
-    int adjvex;
-    struct EdgeNode * next;
-} EdgeNode;
+#define maxn 1000
 
-//?????ڵ?????һ??data????洢??ݣ?һ??firstedge????ָ??߱?ĵ?????ڵ?typedef struct {
-    string data;
-    EdgeNode * firstedge;
-} AdjList;
-
-//???adjList[15]??????????????5?ĵ?λ?????Ȼ??umVertex,numEdge?һ??ͼ?Ķ?????ͱ??
-typedef struct {
-    AdjList adjList[15];
-    int numVertex,numEdge;
-} GraphAdjList;
-
-int local(GraphAdjList G,string val) {
-    for(int i=0; i<G.numVertex; i++)
-    {
-        if(G.adjList[i].data==val)
-            return i;
-    }
-    return -1;
+list<int> G[maxn];
+bool visit[maxn];
+int flag = 0; // flag为0代表从v1到v2长度为k的边没有找到
+// 用一个邻接链表来存图
+// 添加边的函数
+// 因为这是无向图所以只需要在对应的链表上添加函数即可
+void add(int p, int q){
+    G[p].push_back(q);
+    G[q].push_back(p);
 }
 
-void CreateGraph(GraphAdjList & G) {
-    int i,j,k;
-    string v1,v2;
-    EdgeNode * e,* p,*q;
-    cout<<"?????????ͱ????????ո???:"<<endl;
-    cin>>G.numVertex>>G.numEdge;
-    cout<<"????????Ϣ??"<<endl;
-    for(i=0; i<(G.numVertex); i++)
-    {
-        cout<<"??<<i+1<<"?????㣺"<<endl;
-        cin>>G.adjList[i].data;
-        G.adjList[i].firstedge=NULL;
-    }
-    for(k=0; k<(G.numEdge); k++)
-    {
-        cout<<"????ߣ?Vi,Vj????Ķ?????:"<<endl;
-        cin>>v1>>v2;
-        i=local(G,v1);
-        j=local(G,v2);
-
-        if(G.adjList[i].firstedge==NULL)
-        {
-            e= new EdgeNode;
-            e->adjvex=j;
-            e->next=NULL;
-            G.adjList[i].firstedge=e;
-        }
-        else
-        {
-            p=G.adjList[i].firstedge;
-            while(p->next!=NULL)
-            {
-                p=p->next;
-            }
-            e = new EdgeNode;
-            e->adjvex=j;
-            e->next=NULL;
-            p->next=e;
-        }
-        if(G.adjList[j].firstedge==NULL)
-        {
-            e= new EdgeNode;
-            e->adjvex=i;
-            e->next=NULL;
-            G.adjList[j].firstedge=e;
-        }
-        else
-        {
-            p=G.adjList[j].firstedge;
-            while(p->next!=NULL)
-            {
-                p=p->next;
-            }
-            e = new EdgeNode;
-            e->adjvex=i;
-            e->next=NULL;
-            p->next=e;
+void dfs(int start){
+    // 标记当前点已经访问过
+    visit[start] = 1;
+    // 访问当前点
+    cout << start << " ";
+    // 遍历与当前点相邻的所有点，如果它没被访问过则访问它
+    for (list<int>::iterator it = G[start].begin(); it != G[start].end(); ++it){
+        if (!visit[*it]){
+            dfs(*it);
         }
     }
 }
-
-void Prin(GraphAdjList G) {
-    cout<<"???????ڽӱ?????ʾ??"<<endl;
-    for(int i=0; i<G.numVertex; i++)
-    {
-        cout<<G.adjList[i].data;             //??????????
-        EdgeNode * e = G.adjList[i].firstedge;
-        while(e)                              //Ȼ????ʼ??????ÿ???߱???洢??ڽӵ????        {
-            cout<<"-->"<<e->adjvex;
-            e=e->next;
-        }
-        cout<<endl;
-    }
-}
-
-void DFS(GraphAdjList  G,int i) {
-
-    EdgeNode * p;
-    DFSvisited[i]=true;
-    cout<<G.adjList[i].data<<"  ";
-    p=G.adjList[i].firstedge;
-    while(p) {
-        if(!DFSvisited[p->adjvex])
-            DFS(G,p->adjvex);
-        p=p->next;
-    }
-}
-
-void DFSTraverse(GraphAdjList  G) {
-    for(int i=0; i<G.numVertex; i++)
-        DFSvisited[i]=false;
-    for(int i=0; i<G.numVertex; i++) {
-        if(!DFSvisited[i])
-            DFS(G,i);
-    }
-}
-
-void BFSTraverse(GraphAdjList  G) {
-    EdgeNode * p;
-    queue<int>q;
-    for(int i=0; i<G.numVertex; i++)
-        BFSvisited[i]=false;
-    for(int i=0; i<G.numVertex; i++) {
-        if(!BFSvisited[i]) {
-            BFSvisited[i]=true;
-            cout<<G.adjList[i].data<<"  ";
-            q.push(i);
-            while(!q.empty()) {
-                int count =q.front();
-                q.pop();
-                p=G.adjList[count].firstedge;
-                while(p) {
-                    if(!BFSvisited[p->adjvex]) {
-                        BFSvisited[p->adjvex]=true;
-                        cout<<G.adjList[p->adjvex].data<<"  ";
-                        q.push(p->adjvex);
-                    }
-                    p=p->next;
-                }
+void bfs(int start){
+    // 先建一个队列
+    queue<int> q;
+    // 把起点推进去
+    q.push(start);
+    // 初始化一下标记数组
+    memset(visit, 0, sizeof(visit));
+    while (!q.empty()){
+        // 取出队首元素
+        int t = q.front();
+        // 访问队首元素
+        cout << t << " ";
+        visit[t] = 1;
+        q.pop();
+        // 遍历所有当前元素的，如果它没被访问过，则推入栈
+        for (list<int>::iterator it = G[t].begin(); it != G[t].end(); ++it){
+            if (!visit[*it]){
+                visit[*it] = 1;
+                q.push(*it);
             }
         }
     }
+    cout << endl;
 }
-
-
-void DestoryGraph(GraphAdjList & G) {
-    EdgeNode * p = NULL;
-    for(int i=0; i<G.numVertex; i++) {
-        p=G.adjList[i].firstedge;
-        while(p) {
-            EdgeNode * temp = p;
-            p=p->next;
-            delete temp;
+void simple_path_dfs(int v1, int v2, int k, int cur, int *step){
+    // v1是起点，v2是终点，k是路径的长度，cur是当前步数，step是存路径的数组
+    // 每次都更新v1就好了，不用更新v2
+    // k也不用更新，只更新cur
+    step[cur] = v1;
+    if (v1 == v2 && cur == k){
+        flag = 1;
+        for (int i = 0; i <= k; i++){
+            cout << step[i] << " ";
         }
-        G.adjList[i].firstedge=NULL;
+        cout << endl;
+        return;
     }
-}
-bool flag = false;
-int DFS_ALL(GraphAdjList G, int st, int ed, int count, int k) {
-
-    EdgeNode* p;
-
-    DFSvisited[st] = true;
-    count += 1;
-    path[count] = G.adjList[st].data;
-    if (st == ed && k == count) {
-        flag = true;
-        for (int i = 0; i <= k; i++) {
-            cout << path[i] << "->";
+    if (cur == k){
+        return;
+    }
+    for (list<int>::iterator it = G[v1].begin(); it != G[v1].end(); ++it){
+        if (!visit[*it]){
+            visit[*it] = 1;
+            simple_path_dfs(*it, v2, k, cur + 1, step);
+            visit[*it] = 0;
         }
-        cout << "end" << endl;
     }
-    if (count >= k) {
-        DFSvisited[st]
-         = false;
-        return flag;
-    }
-    p = G.adjList[st].firstedge;
-    while(p) {
-        if(!DFSvisited[p->adjvex])
-            DFS_ALL(G,p->adjvex, ed, count, k);
-        p=p->next;
-    }
-    DFSvisited[st] = false;
-    return flag;
-};
-
-int main() {
-    int st, ed;
-    string stS, edS;
-    GraphAdjList G;
-    CreateGraph(G);
-    Prin(G);
-    cout << endl;
-    DFSTraverse(G);
-    cout << endl;
-    BFSTraverse(G);
-    cout << endl;
-    int k;
-    cin >> stS >> edS >> k;
-    for (int i = 0; i < sizeof(DFSvisited); i++) {
-        DFSvisited[i] = false;
-    }
-    flag = false;
-    st = local(G, stS);
-    ed = local(G, edS);
-    if (!DFS_ALL(G, st, ed, -1, k)) {
-        cout << "????? << endl;
-    }
-
-    return 0;
 }
-
+void simple_path(int v1, int v2, int k){
+    int step[maxn];
+    flag = 0;
+    // v1是起点，v2是终点.
+    memset(visit, 0, sizeof(visit));
+    step[0] = v1;
+    simple_path_dfs(v1, v2, k, 0, step);
+    if (flag == 0){
+        cout << "have not found the path from v1 to v2 that its length is k" << endl;
+    }
+}
+int main(){
+    int n, m; // n个点m条边
+    int p, q; //临时变量
+    while (cin >> n >> m){
+        memset(visit, 0, sizeof(visit));
+        for (int i = 1; i <= m; i++){
+            cin >> p >> q;
+            // 从p到q的无向边
+            add(p, q);
+        }
+        cout << "dfs" << endl;
+        dfs(1);
+        cout << endl;
+        cout << "bfs" << endl;
+        bfs(1);
+        int v1, v2, k;
+        cin >> v1 >> v2 >> k;
+        cout << "path from v1 to v2 that its length is k" << endl;
+        simple_path(v1, v2, k);
+    }
+}

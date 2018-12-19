@@ -92,16 +92,7 @@ long long gao(long long n){
 }
 int main(int argc, char * argv[]) 
 {
-    //freopen("in.txt", "r", stdin);
-    freopen("out.txt", "w", stdout);
 	long long n;
-//	for (int nn = 1; nn <= 100; nn++){
-/*	while (cin >> n){
-		long long cnt = gao(n);
-
-		cout << cnt << endl;
-	}
-*/
 	for (long long i = 1; i <= 1000000; i++){
 		if (Miller_Rabin(i)){
 			printf("%lld, ", i);
