@@ -45,6 +45,7 @@ int main(){
 				CntGuliE--;
 			}
 			shifouguli[p] = 1;
+			b[p]--;
 		}
 		if (shifouguli[q] == 0){
 			if (a[q] == 0){
@@ -54,9 +55,10 @@ int main(){
 				CntGuliE--;
 			}
 			shifouguli[q] = 1;
+			b[q]--;
 		}
-		b[q]--;
-		b[p]--;
+		
+		
 	}
 
 	if (m == 0){
