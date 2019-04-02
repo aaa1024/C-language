@@ -1,9 +1,30 @@
 #include <stdio.h>
 int id[100];
-void QuickUnion(int a, int b);
-int root(int a);
-void init();
-void view();
+void init(int n){
+    int i;
+    for (i = 0; i < n; i++)
+        id[i] = i;
+}
+
+int root(int a){
+    while(id[a] != a)
+    {
+        a = id[a];
+    }
+    return a;
+}
+void QuickUnion(int a, int b){
+    if (root(a) != root(b))
+        id[a] = b;
+}
+
+void view()
+{
+    int i;
+    for (i = 0; i < 10; i++){
+        printf("%d,", id[i]);
+    }
+}
 int main()
 {
     int a, b;
@@ -24,32 +45,4 @@ int main()
     return 0;
 }
 
-void init()
-{
-    int i;
-    for (i = 0; i < 100; i++)
-        id[i] = i;
-}
 
-int root(int a)
-{
-    while(id[a] != a)
-    {
-        a = id[a];
-    }
-    return a;
-}
-void QuickUnion(int a, int b)
-{
-    if (root(a) != root(b))
-        id[a] = b;
-}
-
-void view()
-{
-    int i;
-    for (i = 0; i < 10; i++)
-    {
-        printf("%d,", id[i]);
-    }
-}

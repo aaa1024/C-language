@@ -1,18 +1,46 @@
 #include <stdio.h>
-void init(int *a);
-int  connected(int * a, int p, int q);
-void uni(int *a, int p, int q);
+void init(int *a, int n){
+    // 每个元素都在自己的集合里
+    for (int i = 0; i < n; i++)
+    {
+        a[i] = i;
+    }
+}
+
+void uni(int *a, int p, int q, int n)
+{
+    // 合并：把a所在的集合里的所有元素都归并到b所在的元素
+    int i;
+    int pid = a[p];
+    int qid = a[q];
+    for (i = 0; i < n; i++){
+        if(a[i] == qid)
+        {
+            a[i] = pid;
+        }
+    }
+}
+bool connected(int * a, int p, int q){
+    if(a[p] == a[q]) 
+        return true;
+    else
+        return false;
+}
+
+
 int main()
 {
     int a[100];
     int p, q;
     int t;
-    init(a);
+    int n = 100;
+    init(a, 100);
+    printf("Please input times you want to union:\n");
     scanf("%d", &t);
     while (t--)
     {
         scanf("%d%d", &p, &q);
-        uni(a, p, q);
+        uni(a, p, q, n);
     }
     printf("Please input times you want to inquiry:\n");
     scanf("%d", &t);
@@ -22,42 +50,13 @@ int main()
         scanf("%d%d", &p, &q);
         if(connected(a, p, q))
         {
-            printf("1\n");
+            printf("p and q is connected\n");
         }
         else
         {
-            printf("0\n");
+            printf("p and q is connected\n\n");
         }
     }
 }
 
-void init(int *a)
-{
-    int i;
-    for (i = 0; i < 100; i++)
-    {
-        *(a + i) = i;
-    }
-}
 
-int  connected(int * a, int p, int q)
-{
-    if(a[p] == a[q])
-        return 1;
-    else
-        return 0;
-}
-
-void uni(int *a, int p, int q)
-{
-    int i;
-    int pid = a[p];
-    int qid = a[q];
-    for (i = 0; i < 100; i++)
-    {
-        if(a[i] == qid)
-        {
-            a[i] = pid;
-        }
-    }
-}

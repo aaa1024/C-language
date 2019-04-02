@@ -27,44 +27,21 @@ const int inf = 0x3f3f3f3f;
 #define maxn 1000000
 #define LOCAL
 
-LL multi(LL a, LL b, LL mo){
-    LL ans = 0;
-    while(b){
-        if(b & 1){
-            ans += a;
-            if(ans >= mo){
-                ans -= mo;
-            }
-        }
-        a <<= 1;
-        if(a >= mo){
-            a -= mo;
-            if(a == 0) return ans;
-        }
-        b >>= 1;
-    }
-    return ans;
-}
-long long gao(long long x){
-	return multi(x, Mode(2, x ))
-}
 long long Mode(long long a, long long b, long long mode)
 {
 	long long sum = 1;
 	a = a % mode;
  
-	while (b > 0) {
-		printf("%lld %lld %lld\n", sum, a, b);
-		if (b % 2 == 1)		//判断是否是奇数，是奇数的话将多出来的数事先乘如sum
+	while (b) {
+		if (b & 1)		//判断是否是奇数，是奇数的话将多出来的数事先乘如sum
 			sum = (sum * a) % mode;
- 
-		b /= 2;
+		b >>= 1;
 		a = (a * a) % mode;// 不断的两两合并再取模，减小a和b的规模
 	}
 	return sum;
 }
 
 int main(int argc, char * argv[]) {
-	printf("%lld\n", Mode(2, 5, 100));
+	printf("%lld\n", Mode(2, 10, 100));
     return 0;
 }
