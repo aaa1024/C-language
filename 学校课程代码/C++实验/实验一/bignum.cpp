@@ -1,6 +1,12 @@
+/*
+写于17年的面向对象设计
+此大数加法只能进行正整数的加法，不能进行有符号位的加法。
+*/
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
+#include <iostream>
+using namespace std;
 int max(int a, int b);
 void print(const int *a, const int n);
 void set(int *a, char *s, int len, int n);
@@ -59,17 +65,23 @@ void set(int *a, char *s, int len, int n)
 	int i, j;
 	for (i = len - 1, j = n - 1; i >= 0 && j >= 0; i--, j--)
 	{
-		a[i] = s[j] & 15;
+		a[i] = s[j] & 15; //把数字字符转换成数字
 	}
 }
 
 void add(int *a1, int *a2, int *sum, int len)
 {
 	int t = 0;
-	for (int i = len - 1, j = len; i >= 0; i--, j--)
+	for (int i = len - 1, j = len; j >= 0; i--, j--)
 	{
-		int temp = (a1[i] + a2[i] + t);
-
+		// cout << i << endl;
+		int temp;
+		if (j != 0){
+			temp = (a1[i] + a2[i] + t);
+		}
+		else{
+			temp = t;
+		}
 		sum[j] = temp % 10;
 		if (temp >= 10)
 		{

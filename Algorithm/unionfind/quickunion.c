@@ -14,10 +14,14 @@ int root(int a){
     return a;
 }
 void QuickUnion(int a, int b){
-    if (root(a) != root(b))
-        id[a] = b;
+	int root_a = root(a);
+	int root_b = root(b);
+    if (root_a != root_b)
+        id[root_a] = root_b;
 }
-
+bool connect(int a, int b){
+	return root(a) == root(b);
+}
 void view()
 {
     int i;

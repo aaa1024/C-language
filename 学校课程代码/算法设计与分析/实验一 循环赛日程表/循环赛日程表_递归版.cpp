@@ -55,12 +55,12 @@ int main(){
 	// 因为n支队伍要比n - 1天，所以参数为n - 1
 
 	circle_recursion(a, n - 1);
-	/*
+	
 	for (int i = 1; i <= n; i++){
-		for (int j = 0; j < n; j++){
+		for (int j = 1; j < n; j++){
 			cout << table[i][j] << " ";
 		}
 		cout << endl;
 	}
-	*/
+	
 }

@@ -32,6 +32,17 @@ void preOder(node *root){
 		preOder(root->right);
 	}
 }
+void huffmanCode(node *root, string s){
+	if (root->left != NULL){
+		huffmanCode(root->left, s + "0");
+	}
+	if (root->right != NULL){
+		huffmanCode(root->right, s + "1");
+	}
+	if (root->right == NULL && root->left == NULL){
+		cout << root->c << ":" << s << endl;
+	}
+}
 int main(){
 	//freopen("in.txt", "r", stdin);
 	//先把每个节点放在数组里
@@ -70,5 +81,6 @@ int main(){
 		q.push(node('*', t[i - 1].weight + t[i - 2].weight, &t[i - 1], &t[i - 2]));
 	}
 	// 前序遍历
-	preOder(&root);
+	// preOder(&root);
+	huffmanCode(&root, "");
 }
