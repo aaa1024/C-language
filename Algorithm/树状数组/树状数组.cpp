@@ -1,3 +1,11 @@
+/*
+这份代码只支持单点修改和前缀和查询
+树状数组的后序扩展，我之后会写
+
+andywu1998
+2019.7.12
+*/
+
 #include <iostream>
 #include <cstdio>
 using namespace std;
@@ -24,7 +32,8 @@ int main(){
 	cin >> N;
 	int x;
 	for (int i = 1; i <= N; i++){
-		cin >> x;
+	//	cin >> x;
+		x = 1;
 		add(i, x);
 	}
 	for (int i = 1; i <= N; i++){
