@@ -20,6 +20,6 @@ int main()
         }
     }
     for (int i = 0; i < cnt; i++){
-        printf("%lld\n", vis[i]);
+        printf("%lld\n", prime[i]);
     }
 }

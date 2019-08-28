@@ -6,7 +6,7 @@ A[x]是一个数组，我们假设这个数组下标的最大值可以取到1e9�
 
 这样子，我们就不能真的开一个1e9的数组来存取了，因为其他点初始化为0，所以我们区间查询的时候只需要查询那些被修改过的点即可。
 所以我们可以把所有被修改过的点和查询过的区间的左端点和右端点都存下来，因为总共最多也就2e5个嘛。把原来取值从1到1e9的数字去重，然后按照大小顺序放到一个数组里面。
-然后我们可以用lower_bound把这些数值的下标给找出来，这样子，如果给x赋值，那就相当于给x对应下标的标号赋值。
+然后我们可以用lower_bound把这些数值的下标给找出来，这样子，如果要修改x，那么就修改x对应的下标就好了。查询也同理 。
 */
 
 #include <stdio.h>
@@ -82,7 +82,7 @@ void print(){
 	}
 }
 int id(int x){
-	int ans = lower_bound(b, b + cnt_b, x) - b;
+	int ans = lower_bound(b, b + cnt_b, x) - b + 1;
 //	if (ans >= cnt_b){
 //		ans = cnt_b - 1;
 //	}
@@ -107,7 +107,6 @@ int main(int argc, char * argv[]) {
 	// 去重以及离散化
 	sort(b, b + cnt_b);
 	cnt_b = unique(b, b + cnt_b) - b;
-	
 	build(1, 1, (cnt_b + 1) * 3);
 	cout << "cnt_b:" << cnt_b << endl;
 	for (int i = 0; i < cnt_b; i++){
